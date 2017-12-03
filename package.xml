@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <name>RhobanTeamPlay</name>
+  <version>0.0.0</version>
+  <description>
+    Rhoban TeamPlay core
+  </description>
+
+  <maintainer email="qrouxel@labri.fr">Quentin Rouxel</maintainer>
+
+  <license>MIT</license>
+
+  <author email="qrouxel@labri.fr">Quentin Rouxel</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+</package>
+
