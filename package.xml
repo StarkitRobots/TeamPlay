@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package>
-  <name>RhobanTeamPlay</name>
+  <name>rhoban_team_play</name>
   <version>0.0.0</version>
   <description>
-    Rhoban TeamPlay core
+    Rhoban Team Play core
   </description>
 
   <maintainer email="qrouxel@labri.fr">Quentin Rouxel</maintainer>
