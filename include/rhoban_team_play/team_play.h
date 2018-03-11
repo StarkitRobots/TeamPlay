@@ -1,5 +1,10 @@
 #pragma once
 
+#include <cstdint>
+
+namespace rhoban_team_play
+{
+
 /**
  * Robot playing state in teamplay
  */
@@ -35,6 +40,10 @@ struct TeamPlayInfo {
     //Ball position in self frame
     float ballX, ballY, ballQ;
     bool ballOk;
+    /// Ball speed along x-axis in self referential
+    float ballVelX;
+    /// Ball speed along y-axis in self referential
+    float ballVelY;
     //Robot pose in field
     float fieldX, fieldY, fieldYaw, fieldQ, fieldConsistency;
     bool fieldOk;
@@ -46,6 +55,8 @@ struct TeamPlayInfo {
     double localTargetX, localTargetY;
     // Ball target
     double ballTargetX, ballTargetY;
+    /// Time elapsed since last kick was performed
+    float timeSinceLastKick;
     //Referee textual state
     char stateReferee[15];
     //Robocup textual state
@@ -87,3 +98,5 @@ struct TeamPlayInfo {
     float getBallDistance() const;
     float getBallAzimuth() const;
 };        
+
+}

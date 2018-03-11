@@ -12,6 +12,10 @@
 
   <author email="qrouxel@labri.fr">Quentin Rouxel</author>
 
+  <build_depend>rhoban_utils</build_depend> <!-- rhoban/utils.git -->
+
+  <run_depend>rhoban_utils</run_depend>
+
   <buildtool_depend>catkin</buildtool_depend>
 </package>
 
