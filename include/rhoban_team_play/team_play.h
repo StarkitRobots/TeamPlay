@@ -5,6 +5,8 @@
 namespace rhoban_team_play
 {
 
+#define MAX_OBSTACLES 10
+
 /**
  * Robot playing state in teamplay
  */
@@ -44,7 +46,7 @@ struct TeamPlayInfo {
     float ballVelX;
     /// Ball speed along y-axis in self referential
     float ballVelY;
-    //Robot pose in field
+    //Robot pose in field (fieldYaw is [rad])
     float fieldX, fieldY, fieldYaw, fieldQ, fieldConsistency;
     bool fieldOk;
     //Distance to placing
@@ -69,6 +71,11 @@ struct TeamPlayInfo {
     char hardwareWarnings[30];
     //Robot clock
     uint8_t hour, min, sec;
+    /// Obstacles
+    int nbObstacles;
+    float obstaclesX[MAX_OBSTACLES];
+    float obstaclesY[MAX_OBSTACLES];
+
     //Timestamp of data reception
     //in milliseconds
     float timestamp;
