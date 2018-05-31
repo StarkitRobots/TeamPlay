@@ -19,7 +19,8 @@ bool TeamPlayInfo::isOutdated() const
     //Outdated after 3 seconds
     return (getAge() > 3000);
 }
-double TeamPlayInfo::scoreFor(TeamPlayState role) const
+
+float TeamPlayInfo::scoreFor(TeamPlayState role) const
 {
     if (role == PlacingA) return scoreA;
     if (role == PlacingB) return scoreB;
@@ -35,6 +36,11 @@ float TeamPlayInfo::getBallDistance() const
 float TeamPlayInfo::getBallAzimuth() const
 {
     return atan2(ballY, ballX);
+}
+
+float CaptainInfo::getAge() const
+{
+    return TimeStamp::now().getTimeMS() - timestamp;
 }
 
 }

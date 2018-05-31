@@ -17,16 +17,8 @@ enum TeamPlayState : int {
     PlacingA = 3,
     PlacingB = 4,
     PlacingC = 5,
-    PlacingD = 6
-};
-
-/**
- * Robot priority in teamplay
- */
-enum TeamPlayPriority : int {
-    LowPriority = 0,
-    NormalPriority = 1,
-    HighPriority = 2,
+    PlacingD = 6,
+    Unknown = 16
 };
 
 /**
@@ -37,8 +29,6 @@ struct TeamPlayInfo {
     int id;
     //State of the player
     TeamPlayState state;
-    //Player priority
-    TeamPlayPriority priority;
     //Ball position in self frame
     float ballX, ballY, ballQ;
     bool ballOk;
@@ -50,13 +40,13 @@ struct TeamPlayInfo {
     float fieldX, fieldY, fieldYaw, fieldQ, fieldConsistency;
     bool fieldOk;
     //Distance to placing
-    double scoreA, scoreB, scoreC, scoreD;
+    float scoreA, scoreB, scoreC, scoreD;
     // Placing target
     bool placing;
-    double targetX, targetY;
-    double localTargetX, localTargetY;
+    float targetX, targetY;
+    float localTargetX, localTargetY;
     // Ball target
-    double ballTargetX, ballTargetY;
+    float ballTargetX, ballTargetY;
     /// Time elapsed since last kick was performed
     float timeSinceLastKick;
     //Referee textual state
@@ -95,15 +85,33 @@ struct TeamPlayInfo {
     /**
      * Score for a given role
      */
-    double scoreFor(TeamPlayState role) const;
+    float scoreFor(TeamPlayState role) const;
 
     /**
      * Return the distance and the
-     * azimuth between the robot 
+     * azimuth between the robot
      * and the ball
      */
     float getBallDistance() const;
     float getBallAzimuth() const;
-};        
+};
+
+#define CAPTAIN_MAX_ID  4
+
+struct CaptainInfo
+{
+    // Captain id
+    int id;
+    // Targets position & orientation for robots
+    float robotTarget[CAPTAIN_MAX_ID][3];
+    // Reception timestamp
+    float timestamp;
+    
+    /**
+     * Return the time in milliseconds
+     * since data reception
+     */
+    float getAge() const;
+};
 
 }
