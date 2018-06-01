@@ -20,14 +20,6 @@ bool TeamPlayInfo::isOutdated() const
     return (getAge() > 3000);
 }
 
-float TeamPlayInfo::scoreFor(TeamPlayState role) const
-{
-    if (role == PlacingA) return scoreA;
-    if (role == PlacingB) return scoreB;
-    if (role == PlacingC) return scoreC;
-    if (role == PlacingD) return scoreD;
-    return -1;
-}
 float TeamPlayInfo::getBallDistance() const
 {
     return sqrt(ballX*ballX + ballY*ballY);

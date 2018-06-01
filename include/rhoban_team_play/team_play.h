@@ -14,10 +14,7 @@ enum TeamPlayState : int {
     Inactive = 0,
     Playing = 1,
     BallHandling = 2,
-    PlacingA = 3,
-    PlacingB = 4,
-    PlacingC = 5,
-    PlacingD = 6,
+    GoalKeeping = 8,
     Unknown = 16
 };
 
@@ -39,8 +36,6 @@ struct TeamPlayInfo {
     //Robot pose in field (fieldYaw is [rad])
     float fieldX, fieldY, fieldYaw, fieldQ, fieldConsistency;
     bool fieldOk;
-    //Distance to placing
-    float scoreA, scoreB, scoreC, scoreD;
     // Placing target
     bool placing;
     float targetX, targetY;
@@ -83,11 +78,6 @@ struct TeamPlayInfo {
     bool isOutdated() const;
 
     /**
-     * Score for a given role
-     */
-    float scoreFor(TeamPlayState role) const;
-
-    /**
      * Return the distance and the
      * azimuth between the robot
      * and the ball
@@ -96,7 +86,13 @@ struct TeamPlayInfo {
     float getBallAzimuth() const;
 };
 
-#define CAPTAIN_MAX_ID  4
+#define CAPTAIN_MAX_ID  6
+
+enum CaptainOrder : int {
+    SearchBall = 0,
+    HandleBall = 1,
+    Place = 2
+};
 
 struct CaptainInfo
 {
@@ -104,6 +100,8 @@ struct CaptainInfo
     int id;
     // Targets position & orientation for robots
     float robotTarget[CAPTAIN_MAX_ID][3];
+    // Captain instruction for each robot
+    CaptainOrder order[CAPTAIN_MAX_ID];
     // Reception timestamp
     float timestamp;
     
