@@ -1,5 +1,6 @@
 #pragma once
 
+#include <rhoban_utils/serialization/json_serializable.h>
 #include <cstdint>
 
 namespace rhoban_team_play
@@ -84,7 +85,11 @@ struct TeamPlayInfo {
      */
     float getBallDistance() const;
     float getBallAzimuth() const;
+    
 };
+
+void teamPlayfromJson(TeamPlayInfo &info, const Json::Value & json_value);
+Json::Value teamPlayToJson(const TeamPlayInfo &info);
 
 #define CAPTAIN_MAX_ID  6
 
@@ -96,6 +101,8 @@ enum CaptainOrder : int {
 
 struct CaptainInfo
 {
+    CaptainInfo();
+    
     // Captain id
     int id;
     // Targets position & orientation for robots
@@ -110,6 +117,10 @@ struct CaptainInfo
      * since data reception
      */
     float getAge() const;
+    
 };
+
+void captainFromJson(CaptainInfo &info, const Json::Value & json_value);
+Json::Value captainToJson(const CaptainInfo &info);
 
 }
