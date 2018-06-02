@@ -6,6 +6,10 @@
 namespace rhoban_team_play
 {
 
+// Broadcaster ports
+#define TEAM_PLAY_PORT  28645
+#define CAPTAIN_PORT    28646
+
 #define MAX_OBSTACLES 10
 
 /**
