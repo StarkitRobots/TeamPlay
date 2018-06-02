@@ -60,10 +60,11 @@ void teamPlayfromJson(TeamPlayInfo &info, const Json::Value & json_value)
         info.sec = json_value[k++].asInt();
         
         // Obstacles
+        info.obstaclesRadius = json_value[k++].asFloat();
         info.nbObstacles = 0;
         for (auto obstacle : json_value[k++]) {
-            info.obstaclesX[info.nbObstacles] = obstacle[0].asFloat();
-            info.obstaclesY[info.nbObstacles] = obstacle[1].asFloat();
+            info.obstacles[info.nbObstacles][0] = obstacle[0].asFloat();
+            info.obstacles[info.nbObstacles][1] = obstacle[1].asFloat();
             info.nbObstacles++;
         }
         
@@ -122,11 +123,12 @@ Json::Value teamPlayToJson(const TeamPlayInfo &info)
     json.append(info.sec);
     
     // Obstacles
+    json.append(info.obstaclesRadius);
     Json::Value obstacles = Json::Value(Json::arrayValue);
     for (int k=0; k<info.nbObstacles; k++) {
         Json::Value obstacle(Json::arrayValue);
-        obstacle[0] = info.obstaclesX[k];
-        obstacle[1] = info.obstaclesY[k];
+        obstacle[0] = info.obstacles[k][0];
+        obstacle[1] = info.obstacles[k][1];
         obstacles.append(obstacle);
     }
     json.append(obstacles);

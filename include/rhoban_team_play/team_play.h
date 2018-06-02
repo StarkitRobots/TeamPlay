@@ -63,8 +63,8 @@ struct TeamPlayInfo {
     uint8_t hour, min, sec;
     /// Obstacles
     int nbObstacles;
-    float obstaclesX[MAX_OBSTACLES];
-    float obstaclesY[MAX_OBSTACLES];
+    float obstaclesRadius;
+    float obstacles[MAX_OBSTACLES][2];
 
     //Timestamp of data reception
     //in milliseconds
