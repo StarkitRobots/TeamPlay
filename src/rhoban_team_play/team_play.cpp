@@ -12,7 +12,7 @@ namespace rhoban_team_play
 
 void teamPlayfromJson(TeamPlayInfo &info, const Json::Value & json_value)
 {
-    if (json_value.size() == 32) {
+    if (json_value.size() == 33) {
         int k = 0;
         
         // Robot id and state
