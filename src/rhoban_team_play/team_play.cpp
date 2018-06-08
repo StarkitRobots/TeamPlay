@@ -162,7 +162,13 @@ float TeamPlayInfo::getBallAzimuth() const
 
 CaptainInfo::CaptainInfo()
 : id(-1)
-{    
+{
+    for (int k=0; k<CAPTAIN_MAX_ID; k++) {
+        order[k] = SearchBall;
+        robotTarget[k][0] = 0;
+        robotTarget[k][1] = 0;
+        robotTarget[k][2] = 0;
+    }
 }
 
 float CaptainInfo::getAge() const
