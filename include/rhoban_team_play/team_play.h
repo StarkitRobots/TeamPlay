@@ -107,8 +107,18 @@ enum CaptainOrder : int {
     Place = 2
 };
 
+struct CommonBall {
+  /// Number of robots agreeing on the Ball position
+  int nbRobots;
+  /// Pos on field [m]
+  float x;
+  /// Pos on field [m]
+  float y;
+};
+
 struct CaptainInfo
 {
+
     CaptainInfo();
     
     // Captain id
@@ -119,6 +129,8 @@ struct CaptainInfo
     CaptainOrder order[CAPTAIN_MAX_ID];
     // Reception timestamp
     float timestamp;
+
+    CommonBall common_ball;
     
     /**
      * Return the time in milliseconds

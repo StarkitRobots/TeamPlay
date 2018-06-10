@@ -169,6 +169,9 @@ CaptainInfo::CaptainInfo()
         robotTarget[k][1] = 0;
         robotTarget[k][2] = 0;
     }
+    common_ball.nbRobots = 0;
+    common_ball.x = 0;
+    common_ball.y = 0;
 }
 
 float CaptainInfo::getAge() const
@@ -178,7 +181,7 @@ float CaptainInfo::getAge() const
 
 void captainFromJson(CaptainInfo &info, const Json::Value & json_value)
 {
-    if (json_value.size() == 4) {
+    if (json_value.size() == 7) {
         int k = 0;
         
         info.id = json_value[k++].asInt();
@@ -196,6 +199,10 @@ void captainFromJson(CaptainInfo &info, const Json::Value & json_value)
         }
         
         info.timestamp = json_value[k++].asFloat();
+
+        info.common_ball.nbRobots = json_value[k++].asInt();
+        info.common_ball.x = json_value[k++].asFloat();
+        info.common_ball.y = json_value[k++].asFloat();
     } else {
         std::cerr << "CaptainInfo bad json size" << std::endl;    
     }
@@ -224,6 +231,10 @@ Json::Value captainToJson(const CaptainInfo &info)
     json.append(orders);
     
     json.append(info.timestamp);
+
+    json.append(info.common_ball.nbRobots);
+    json.append(info.common_ball.x);
+    json.append(info.common_ball.y);
     
     return json;
 }
