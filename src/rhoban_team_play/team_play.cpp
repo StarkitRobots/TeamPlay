@@ -160,6 +160,14 @@ float TeamPlayInfo::getBallAzimuth() const
     return atan2(ballY, ballX);
 }
 
+Eigen::Vector2d TeamPlayInfo::getBallInField() const
+{
+  Eigen::Vector2d ball_in_self;
+  ball_in_self(0) = fieldX + ballX * cos(fieldYaw) - ballY * sin(fieldYaw);
+  ball_in_self(1) = fieldY + ballX * sin(fieldYaw) + ballY * cos(fieldYaw);
+  return ball_in_self;
+}
+
 CaptainInfo::CaptainInfo()
 : id(-1)
 {
@@ -177,6 +185,16 @@ CaptainInfo::CaptainInfo()
 float CaptainInfo::getAge() const
 {
     return TimeStamp::now().getTimeMS() - timestamp;
+}
+
+int CaptainInfo::getHandler() const
+{
+  for (int robot_id = 0; robot_id < CAPTAIN_MAX_ID; robot_id++) {
+    if (order[robot_id] == CaptainOrder::HandleBall) {
+      return robot_id + 1;
+    }
+  }
+  return -1;
 }
 
 void captainFromJson(CaptainInfo &info, const Json::Value & json_value)

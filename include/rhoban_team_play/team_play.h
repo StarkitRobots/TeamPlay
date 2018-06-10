@@ -93,7 +93,10 @@ struct TeamPlayInfo {
      */
     float getBallDistance() const;
     float getBallAzimuth() const;
-    
+
+  /// Return the position of the ball in the field according to internal content
+  /// Warning: this value is meaningless if !(ballOk && fieldOk)
+  Eigen::Vector2d getBallInField() const;
 };
 
 void teamPlayfromJson(TeamPlayInfo &info, const Json::Value & json_value);
@@ -137,6 +140,11 @@ struct CaptainInfo
      * since data reception
      */
     float getAge() const;
+
+    /// Return the id of the robot handling the ball, if none of the robot is
+    /// handling the ball, return -1
+    /// Warning: ids start at '1'
+    int getHandler() const;
     
 };
 
