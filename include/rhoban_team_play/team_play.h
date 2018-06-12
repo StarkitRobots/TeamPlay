@@ -86,6 +86,8 @@ struct TeamPlayInfo {
      */
     bool isOutdated() const;
 
+    bool isPenalized() const;
+
     /**
      * Return the distance and the
      * azimuth between the robot
@@ -94,9 +96,9 @@ struct TeamPlayInfo {
     float getBallDistance() const;
     float getBallAzimuth() const;
 
-  /// Return the position of the ball in the field according to internal content
-  /// Warning: this value is meaningless if !(ballOk && fieldOk)
-  Eigen::Vector2d getBallInField() const;
+    /// Return the position of the ball in the field according to internal content
+    /// Warning: this value is meaningless if !(ballOk && fieldOk)
+    Eigen::Vector2d getBallInField() const;
 };
 
 void teamPlayfromJson(TeamPlayInfo &info, const Json::Value & json_value);

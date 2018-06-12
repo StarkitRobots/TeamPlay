@@ -144,6 +144,11 @@ float TeamPlayInfo::getAge() const
     return TimeStamp::now().getTimeMS() - timestamp;
 }
 
+bool TeamPlayInfo::isPenalized() const
+{
+  return strcmp(stateRobocup, "penalized") == 0;
+}
+
 bool TeamPlayInfo::isOutdated() const
 {
     //Outdated after 3 seconds
