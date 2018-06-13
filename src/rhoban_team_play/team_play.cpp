@@ -185,6 +185,12 @@ CaptainInfo::CaptainInfo()
     common_ball.nbRobots = 0;
     common_ball.x = 0;
     common_ball.y = 0;
+    nb_opponents = 0;
+    for (int k=0; k<MAX_OPPONENTS; k++) {
+      common_opponents[k].consensusStrength = 0;
+      common_opponents[k].x = 0;
+      common_opponents[k].y= 0;
+    }
 }
 
 float CaptainInfo::getAge() const
@@ -204,7 +210,7 @@ int CaptainInfo::getHandler() const
 
 void captainFromJson(CaptainInfo &info, const Json::Value & json_value)
 {
-    if (json_value.size() == 7) {
+    if (json_value.size() == 8) {
         int k = 0;
         
         info.id = json_value[k++].asInt();
@@ -226,6 +232,24 @@ void captainFromJson(CaptainInfo &info, const Json::Value & json_value)
         info.common_ball.nbRobots = json_value[k++].asInt();
         info.common_ball.x = json_value[k++].asFloat();
         info.common_ball.y = json_value[k++].asFloat();
+
+        const Json::Value & common_opponents_json = json_value[k++];
+        if (!common_opponents_json.isArray()) {
+          throw std::logic_error("Common opponents is not an array");
+          info.nb_opponents = common_opponents_json.size();
+          for (int opp_id = 0; opp_id < MAX_OPPONENTS; opp_id++) {
+            if (opp_id < info.nb_opponents) {
+              const Json::Value & opp_json = common_opponents_json[opp_id];
+              info.common_opponents[opp_id].consensusStrength = opp_json[opp_id].asInt();
+              info.common_opponents[opp_id].x = opp_json[opp_id].asFloat();
+              info.common_opponents[opp_id].y = opp_json[opp_id].asFloat();
+            } else {
+              info.common_opponents[opp_id].consensusStrength = 0;
+              info.common_opponents[opp_id].x = 0;
+              info.common_opponents[opp_id].y = 0;
+            }
+          }
+        }
     } else {
         std::cerr << "CaptainInfo bad json size" << std::endl;    
     }
@@ -258,6 +282,16 @@ Json::Value captainToJson(const CaptainInfo &info)
     json.append(info.common_ball.nbRobots);
     json.append(info.common_ball.x);
     json.append(info.common_ball.y);
+
+    Json::Value opponents(Json::arrayValue);
+    for (int k = 0; k < info.nb_opponents; k++) {
+      Json::Value opp(Json::arrayValue);
+      opp.append(info.common_opponents[k].consensusStrength);
+      opp.append(info.common_opponents[k].x);
+      opp.append(info.common_opponents[k].y);
+      opponents.append(opp);
+    }
+    json.append(opponents);
     
     return json;
 }

@@ -14,7 +14,11 @@ namespace rhoban_team_play
 #define TEAM_PLAY_FREQUENCY     3
 #define CAPTAIN_FREQUENCY       5
 
+/// Maximal number of obstacles shared by each robot 
 #define MAX_OBSTACLES 10
+
+/// Maximal number of opponents considered in consensus
+#define MAX_OPPONENTS 5
 
 /**
  * Robot playing state in teamplay
@@ -121,6 +125,15 @@ struct CommonBall {
   float y;
 };
 
+struct CommonOpponent {
+  /// Number of robots agreeing
+  int consensusStrength;
+  /// Pos on field [m]
+  float x;
+  /// Pos on field [m]
+  float y;
+};
+
 struct CaptainInfo
 {
 
@@ -134,6 +147,11 @@ struct CaptainInfo
     CaptainOrder order[CAPTAIN_MAX_ID];
     // Reception timestamp
     float timestamp;
+
+    /// Number of opponents in consensus
+    int nb_opponents;
+    /// List of the catkin opponents
+    CommonOpponent common_opponents[MAX_OPPONENTS];
 
     CommonBall common_ball;
     
