@@ -12,7 +12,7 @@ namespace rhoban_team_play
 
 void teamPlayfromJson(TeamPlayInfo &info, const Json::Value & json_value)
 {
-    if (json_value.size() == 33) {
+    if (json_value.size() >= 33) {
         int k = 0;
         
         // Robot id and state
@@ -69,6 +69,8 @@ void teamPlayfromJson(TeamPlayInfo &info, const Json::Value & json_value)
         }
         
         info.timestamp = json_value[k++].asFloat();
+        
+        info.goalKeeper = json_value[k++].asBool();
     } else {
         std::cerr << "TeamPlayInfo::fromJson bad array size!" << std::endl;    
     }
@@ -135,6 +137,9 @@ Json::Value teamPlayToJson(const TeamPlayInfo &info)
     
     // Timestamp
     json.append(info.timestamp);
+    
+    // Is the robot a goal keeper ?
+    json.append(info.goalKeeper);
     
     return json;
 }

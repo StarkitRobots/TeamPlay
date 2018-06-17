@@ -77,6 +77,9 @@ struct TeamPlayInfo {
     //Timestamp of data reception
     //in milliseconds
     float timestamp;
+    
+    // Is the player goal keeper ?
+    bool goalKeeper;
 
     /**
      * Return the time in milliseconds
