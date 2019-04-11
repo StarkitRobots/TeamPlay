@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package>
-  <name>rhoban_team_play</name>
+  <name>starkit_team_play</name>
   <version>0.0.0</version>
   <description>
-    Rhoban Team Play core
+    Starkit Team Play core
   </description>
 
   <maintainer email="qrouxel@labri.fr">Quentin Rouxel</maintainer>
@@ -12,9 +12,9 @@
 
   <author email="qrouxel@labri.fr">Quentin Rouxel</author>
 
-  <build_depend>rhoban_utils</build_depend> <!-- rhoban/utils.git -->
+  <build_depend>starkit_utils</build_depend> <!-- starkit/utils.git -->
 
-  <run_depend>rhoban_utils</run_depend>
+  <run_depend>starkit_utils</run_depend>
 
   <buildtool_depend>catkin</buildtool_depend>
 </package>

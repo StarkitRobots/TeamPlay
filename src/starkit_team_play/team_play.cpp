@@ -1,13 +1,13 @@
 #include <iostream>
-#include "rhoban_team_play/team_play.h"
+#include "starkit_team_play/team_play.h"
 
-#include <rhoban_utils/timing/time_stamp.h>
+#include <starkit_utils/timing/time_stamp.h>
 
 #include <cmath>
 
-using namespace rhoban_utils;
+using namespace starkit_utils;
 
-namespace rhoban_team_play
+namespace starkit_team_play
 {
 void teamPlayfromJson(TeamPlayInfo& info, const Json::Value& json_value)
 {
@@ -321,4 +321,4 @@ Json::Value captainToJson(const CaptainInfo& info)
   return json;
 }
 
-}  // namespace rhoban_team_play
+}  // namespace starkit_team_play

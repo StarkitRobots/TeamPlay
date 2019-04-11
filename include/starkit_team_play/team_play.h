@@ -1,9 +1,9 @@
 #pragma once
 
-#include <rhoban_utils/serialization/json_serializable.h>
+#include <starkit_utils/serialization/json_serializable.h>
 #include <cstdint>
 
-namespace rhoban_team_play
+namespace starkit_team_play
 {
 // Broadcaster ports [UDP port]
 #define TEAM_PLAY_PORT 28645
@@ -176,4 +176,4 @@ struct CaptainInfo
 void captainFromJson(CaptainInfo& info, const Json::Value& json_value);
 Json::Value captainToJson(const CaptainInfo& info);
 
-}  // namespace rhoban_team_play
+}  // namespace starkit_team_play
