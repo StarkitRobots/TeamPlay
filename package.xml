@@ -12,7 +12,7 @@
 
   <author email="qrouxel@labri.fr">Quentin Rouxel</author>
 
-  <build_depend>starkit_utils</build_depend> <!-- starkit/utils.git -->
+  <build_depend>starkit_utils</build_depend> <!-- StarkitRobots/utils.git -->
 
   <run_depend>starkit_utils</run_depend>
 
